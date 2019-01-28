@@ -9,7 +9,7 @@ def covert(path):
         filename
         for filename
         in os.listdir(path)
-        if filename.endswith('.mp3')
+        if filename.endswith('.aac')
     ]
 
     cpath = os.path.join(path, "covert")
