@@ -2,6 +2,7 @@ import os
 import fnmatch
 import sys
 import subprocess
+import threading
 
 
 def covert(path):
@@ -11,10 +12,10 @@ def covert(path):
         in os.listdir(path)
         if filename.endswith('.aac')
     ]
-
+    print("cover path : " + path + "start")
     cpath = os.path.join(path, "covert")
-    print("the c path is" + cpath)
-    os.makedirs(cpath)
+    if os.path.exists(path=cpath):
+        os.makedirs(cpath)
 
     for filename in filenames:
         source = os.path.join(path, filename)
@@ -28,12 +29,13 @@ def covert(path):
 
 
 def main(argv):
-    print("how to use:");
-    print("python aac2mp3.py aac_dir")
-    if argv[1] == None:
-        print("Please specify the AAC files dir")
+    print("how to use: python aac2mp3.py aac_dir ...");
+    if len(argv) <= 1:
+        print("please assign the dir")
     else:
-        covert(argv[1])
+        for i in range(1, len(argv)):
+            t = threading.Thread(target=covert, args=(argv[i],))
+            t.start()
 
 
 if __name__ == "__main__":
