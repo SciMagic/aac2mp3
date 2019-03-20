@@ -1,5 +1,5 @@
 # aac2mp3
-1.it's python script trans aac audio file to mp3 file
+1.it's a python script that trans aac audio file to mp3 file
 
 2.you should install ffmpeg first. eg."brew install ffmpeg"
 
